@@ -1,15 +1,201 @@
-Source: template-repository
-Section: unknown
+Source: opendnssec
+Section: admin
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Mathieu Mirmont <mat@parad0x.org>
+Uploaders: Timo Aaltonen <tjaalton@debian.org>
+Build-Depends:
+               debhelper-compat (= 13),
+               default-libmysqlclient-dev,
+               default-mysql-client,
+               dh-runit,
+               doxygen,
+               graphviz,
+               libcunit1-dev,
+               libldns-dev (>= 1.6.14~),
+               libreadline-dev,
+               libsqlite3-dev,
+               libssl-dev,
+               libxml2-dev,
+               libxml2-utils,
+               opensc,
+               pkg-config,
+               po-debconf,
+               procps,
+               sqlite3,
+               xsltproc
+Standards-Version: 4.6.2
+Homepage: https://www.opendnssec.org/
+Vcs-Browser: https://salsa.debian.org/debian/opendnssec
+Vcs-Git: https://salsa.debian.org/debian/opendnssec.git
+Rules-Requires-Root: no
 
-Package: template-repository
+Package: opendnssec-common
+Section: misc
+Architecture: all
+Depends: adduser,
+         ucf,
+         ${misc:Depends}
+Recommends: opendnssec(>= ${source:Version}),
+            softhsm2
+Description: common configuration files for OpenDNSSEC suite
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ This package contains common configuration files and creates default
+ user, group and opendnssec directories.
+
+Package: opendnssec
+Section: misc
+Architecture: all
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libhsm-bin (>= ${source:Version}),
+         opendnssec-common (>= ${source:Version}),
+         opendnssec-enforcer (>= ${source:Version}),
+         opendnssec-signer (>= ${source:Version}),
+         ${misc:Depends}
+Recommends: softhsm2
+Suggests: opendnssec-doc (>= ${source:Version})
+Description: dependency package to install full OpenDNSSEC suite
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ This metapackage depends on the standard distribution of OpenDNSSEC.
+
+Package: opendnssec-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Suggests: opendnssec (>= ${source:Version})
+Description: documentation for OpenDNSSEC suite
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ This package contains doxygen documentation for OpenDNSSEC.
+
+Package: opendnssec-enforcer
+Architecture: all
+Pre-Depends: ${misc:Pre-Depends}
+Depends: opendnssec-enforcer-sqlite3 (>= ${source:Version}) |
+         opendnssec-enforcer-backend,
+         opendnssec-common (>= ${source:Version}),
+         procps,
+         ${misc:Depends}
+Recommends: opendnssec (>= ${source:Version}),
+            opendnssec-signer (>= ${source:Version}),
+            softhsm2
+Breaks: ${runit:Breaks}
+Description: tool to prepare DNSSEC keys (common package)
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ OpenDNSSEC Enforcer, which is a tool to make sure that there are
+ enough keys for all of the zones, and take the policy and key
+ information from the KASP database and turn it into an xml file that
+ the signer can use.
+ .
+ The package contains OpenDNSSEC Enforcer documentation, manpages and
+ it depends on either sqlite3 or MySQL backend package with binaries.
+
+Package: opendnssec-enforcer-mysql
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Pre-Depends: ${misc:Pre-Depends}
+Depends: default-mysql-client,
+         libdbd-mysql-perl,
+         opendnssec-common (= ${source:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Provides: opendnssec-enforcer-backend
+Conflicts: opendnssec-enforcer-backend
+Replaces: opendnssec-enforcer-backend
+Recommends: opendnssec (= ${source:Version}),
+            softhsm2
+Description: tool to prepare DNSSEC keys (MySQL backend)
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ OpenDNSSEC Enforcer, which is a tool to make sure that there are
+ enough keys for all of the zones, and take the policy and key
+ information from the KASP database and turn it into an xml file that
+ the signer can use.
+ .
+ The package contains OpenDNSSEC Enforcer binaries with MySQL backend.
+
+Package: opendnssec-enforcer-sqlite3
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libdbd-sqlite3-perl,
+         opendnssec-common (= ${source:Version}),
+         sqlite3,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Provides: opendnssec-enforcer-backend
+Conflicts: opendnssec-enforcer-backend
+Replaces: opendnssec-enforcer-backend
+Recommends: opendnssec (= ${source:Version}),
+            softhsm2
+Description: tool to prepare DNSSEC keys (sqlite3 backend)
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ OpenDNSSEC Enforcer, which is a tool to make sure that there are
+ enough keys for all of the zones, and take the policy and key
+ information from the KASP database and turn it into an xml file that
+ the signer can use.
+ .
+ The package contains OpenDNSSEC Enforcer binaries with sqlite3 backend.
+
+Package: opendnssec-signer
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: opendnssec-common (= ${source:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: opendnssec (= ${source:Version}),
+            opendnssec-enforcer (= ${source:Version}),
+            softhsm2
+Breaks: ${runit:Breaks}
+Description: daemon to sign DNS zone files periodically
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ This package contains the OpenDNSSEC Signer Engine.  The task of the
+ signer engine is to schedule signing operation on DNS zones.  Taking
+ input from the KASP, it will automatically sign zones and keep their
+ signatures up-to-date.
+
+Package: libhsm-bin
+Section: misc
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: opendnssec-common (= ${source:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: opendnssec (= ${source:Version}),
+            softhsm2
+Description: library for interfacing PKCS#11 Hardware Security Modules
+ OpenDNSSEC is a complete DNSSEC zone signing system which is very
+ easy to use with stability and security in mind.  There are a lot of
+ details in signing zone files with DNSSEC and OpenDNSSEC covers most
+ of it.
+ .
+ Support library for interfacing PKCS#11 compatible Hardware Security
+ Modules (HSM).  This library allows programs to use cryptografic
+ secure storages for keying material such as softhsm2 (HSM implemented
+ in software), SCA6000, Aladdin eToken, OpenSC, nCipher or AEP Keyper.
+ .
+ This package contains command line tools.

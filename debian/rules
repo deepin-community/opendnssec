@@ -1,4 +1,83 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
 
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic -DSQLITE3_SONAME=\\\"$(SQLITE3_SONAME)\\\"
+
+SQLITE3_SONAME = $(shell objdump -p $$(pkg-config --variable=libdir sqlite3)/libsqlite3.so | sed -ne 's/^[[:space:]]*SONAME[[:space:]]*\(libsqlite3\.so.*\)/\1/p')
+
+# main packaging script based on dh7 syntax
 %:
-	dh $@
+	dh $@ --with runit
+
+override_dh_auto_clean:
+	dh_auto_clean -Bbuild-sqlite3
+	dh_auto_clean -Denforcer -Bbuild-mysql/enforcer
+	debconf-updatepo
+	rm -rf build-mysql build-sqlite3
+
+COMMON = --disable-rpath --with-ldns=/usr \
+	 --with-cunit=/usr --libexecdir=/usr/lib/opendnssec/ \
+	 --with-pkcs11-opensc=/usr/lib/pkcs11/opensc-pkcs11.so \
+	 --with-pkcs11-softhsm=/usr/lib/softhsm/libsofthsm2.so \
+	 --with-readline
+
+override_dh_auto_configure:
+	dh_auto_configure -Bbuild-sqlite3 -- $(COMMON) --with-enforcer-database=sqlite3
+	mkdir build-mysql
+	ln -s ../build-sqlite3/libhsm build-mysql/libhsm
+	dh_auto_configure -Bbuild-mysql/enforcer -- $(COMMON) --with-enforcer-database=mysql --disable-signer --disable-doxygen-doc
+	touch $(wildcard conf/*.rng)
+
+override_dh_auto_build-arch:
+	dh_auto_build -Bbuild-sqlite3
+	dh_auto_build -Bbuild-mysql/enforcer
+
+override_dh_auto_build-indep:
+	dh_auto_build -Bbuild-sqlite3 -- docs
+
+override_dh_auto_install:
+	dh_auto_install -Bbuild-sqlite3 -- DESTDIR=$(CURDIR)/debian/tmp
+	dh_auto_install -Bbuild-mysql/enforcer -- DESTDIR=$(CURDIR)/debian/tmp-mysql
+	# Install migration scripts
+	install -m 755 $(CURDIR)/enforcer/utils/convert_mysql_to_sqlite $(CURDIR)/debian/tmp/usr/share/opendnssec/
+	install -m 755 $(CURDIR)/enforcer/utils/convert_sqlite_to_mysql $(CURDIR)/debian/tmp/usr/share/opendnssec/
+	install -m 644 $(CURDIR)/enforcer/src/db/schema.* $(CURDIR)/debian/tmp/usr/share/opendnssec/
+
+	# Remove extra dist files from opendnssec-enforcer-mysql
+	rm -rf $(CURDIR)/debian/opendnssec-enforcer-mysql/var/run/opendnssec/ \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/bin/ods-hsm* \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/bin/ods-kasp2html \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/sbin/ods-control \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/opendnssec/*.rn? \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/opendnssec/kasp2html.xsl \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/etc/opendnssec \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/man/man5 \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/man/man7 \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/man/man8/ods-control.* \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/man/man1/ods-hsm* \
+	       $(CURDIR)/debian/opendnssec-enforcer-mysql/usr/share/opendnssec/database_create*
+
+override_dh_installdocs:
+	dh_installdocs -p opendnssec-common -p opendnssec-doc
+
+override_dh_installchangelogs:
+	dh_installchangelogs -p opendnssec-common -p opendnssec-doc NEWS
+
+override_dh_install:
+	dh_install -popendnssec-enforcer-mysql --sourcedir=debian/tmp-mysql
+	dh_install -Nopendnssec-enforcer-mysql
+
+override_dh_missing:
+	dh_missing -Nopendnssec-enforcer-mysql --fail-missing -Xxml.sample

@@ -1,5 +1,1018 @@
-template-repository (1.0-1) unstable; urgency=medium
+opendnssec (1:2.1.13-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream version 2.1.13
+  * patches: refresh
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Mathieu Mirmont <mat@parad0x.org>  Fri, 22 Sep 2023 17:22:55 +0200
+
+opendnssec (1:2.1.12-2) unstable; urgency=medium
+
+  * control: bump policy to 4.6.2, no code change
+  * opendnssec-common.postinst: shellcheck compliance
+  * po/ro.po: Add Romanian translation (Closes: #1033174)
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 19 Mar 2023 09:33:29 +0100
+
+opendnssec (1:2.1.12-1) unstable; urgency=medium
+
+  * New upstream version 2.1.12
+  * patches: refresh, no material change
+  * control: bump policy to 4.6.1, no code change
+  * upstream/metadata: update the bug reporting URLs
+  * Remove antique (pre-2.0) migration scripts
+  * po/*: refresh via debconf-updatepo
+  * *.lintian-overrides: refresh
+  * upstream/signing-key.asc: update the expired key
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Thu, 10 Nov 2022 10:06:20 +0100
+
+opendnssec (1:2.1.10-1) unstable; urgency=medium
+
+  * New upstream version 2.1.10
+  * control: bump policy to 4.6.0, no code change
+  * lintian-overrides: remove obsolete overrides
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 12 Sep 2021 00:22:01 +0200
+
+opendnssec (1:2.1.9-1) unstable; urgency=medium
+
+  * New upstream version 2.1.9
+  * Rename the git branches to follow DEP-14
+  * patches: refresh, fix build with MySQL 8 (Closes: #987832)
+  * patches: fix minor typos
+  * control: bump policy to 4.5.1, no code change
+  * control: add versioned dependencies
+  * control: remove obsolete Conflicts
+  * opendnssec-*.service: add documentation links
+  * clean: delete temporary build directories
+  * .gitignore: update the file
+  * watch: bump to version 4
+  * gitlab-ci.yml: shellcheck: dash supports local
+  * lintian-overrides: allow shipping systemd files to /usr
+  * rules: remove unnecessary -Wl,--as-needed
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Mon, 23 Aug 2021 11:05:56 +0200
+
+opendnssec (1:2.1.7-2) unstable; urgency=medium
+
+  * po/pt_BR.po: Add Brazilian translation (Closes: #986890)
+  * po/es.po: Add Spanish translation (Closes: #987518)
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 25 Apr 2021 12:54:19 +0200
+
+opendnssec (1:2.1.7-1) unstable; urgency=medium
+
+  * New upstream version 2.1.7
+  * patches: refresh, drop those merged upstream
+  * gitlab-ci.yml: cleanup the file (closes: #972743)
+  * Add/fix the usr/share/doc symlinks
+  * lintian-overrides: refresh
+  * tmpfile: rename as tmpfiles
+  * upstream/metadata: add file
+  * Register Doxygen manuals with doc-base
+  * control: use secure URI in Homepage field
+  * control: drop ancient Breaks/Replaces/Conflicts
+  * control: bump debhelper compat to 13
+  * Track upstream tarballs instead of their git repository
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 25 Oct 2020 03:13:25 +0100
+
+opendnssec (1:2.1.6-2) unstable; urgency=medium
+
+  * patches: fix the code to build with GCC-10 (Closes: #957637)
+  * gitlab-ci.yml: fix the dsc job
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Mon, 27 Jul 2020 10:54:43 +0200
+
+opendnssec (1:2.1.6-1) unstable; urgency=medium
+
+  * New upstream release
+  * Build with readline support
+  * patches: drop xml2-config (Closes: #949420)
+  * control: bump policy to 4.5.0, no code change
+  * source/local-options: remove suppression of accidental upstream commit
+  * gitlab-ci.yml: fix the dsc job
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 16 Feb 2020 12:07:31 +0100
+
+opendnssec (1:2.1.5-1) unstable; urgency=medium
+
+  * gbp.conf: update the upstream tag format
+  * New upstream release
+  * patches: drop the AllowExtraction patch applied upstream
+  * patches: update the patches
+  * gitlab-ci.yml: force download the upstream tarball
+  * source/local-options: ignore the conf/trang directory
+  * source: ignore the accidentally comitted binary file
+  * README.source: update the uscan command line
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 01 Dec 2019 19:16:35 +0100
+
+opendnssec (1:2.1.4-2) unstable; urgency=medium
+
+  * README.source: add source package generation instructions
+  * gitlab-ci.yml: Build a source package when pushing tags
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Thu, 24 Oct 2019 19:25:02 +0200
+
+opendnssec (1:2.1.4-1) unstable; urgency=medium
+
+  * opendnssec-common.postinst: fix zonelist.xml perms (Closes: #927998)
+  * conf/conf.rnc: fix AllowExtraction field name (Closes: #928021)
+  * New upstream release
+  * Drop local patches accepted upstream
+  * Remove strptime build warning
+  * control: bump policy to 4.4.1, no code change
+  * gbp.conf: rename [git-dch] to [dch]
+  * gitlab-ci.yml: cleanup the CI pipeline
+  * opendnssec-*.init: fix the failure to stop the daemons
+  * Add support for running under runit supervision
+  * control: remove unnecessary build dependencies
+  * control: bump debhelper compat to 12
+  * control: drop obsolete dependency on mysql
+  * Update the source documentation and gbp.conf file
+  * copyright: follow DEP5
+  * Fix some pedantic lintian complaints
+  * po/ru.po: Add Russian translation (Closes: #942640)
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Mon, 21 Oct 2019 10:14:45 +0200
+
+opendnssec (1:2.1.3-3) unstable; urgency=medium
+
+  * po/pt.po: Add Portuguese translation (Closes: #923569)
+  * po/nl.po: Add Dutch translation (Closes: #924102)
+  * po/fr.po: Add French translation (Closes: #924055)
+  * Fix build warnings and possible bugs
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Sun, 10 Mar 2019 13:33:10 +0100
+
+opendnssec (1:2.1.3-2) unstable; urgency=medium
+
+  * po/de.po: Add German translation (Closes: #922638)
+  * gitlab-ci.yml: Check for missing debconf-updatepo
+  * po/templates.po: Update the templates.pot file
+  * opendnssec-*.service: Fix service files
+  * opendnssec-*.init: use do_restart_prepare from init-d-script
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Tue, 26 Feb 2019 23:13:13 +0100
+
+opendnssec (1:2.1.3-1) unstable; urgency=medium
+
+  [ Timo Aaltonen ]
+  * rules: Fix db conversion script install dir. (Closes: #864614)
+  * rules: Use libsofthsm2. (Closes: #868292)
+  * Remove empty maintscripts.
+  * control: Update VCS urls.
+  * control: Priority should be optional, not extra.
+  * compat, control, rules: Bump debhelper to 10.
+  * lintian-overrides: Updated.
+  * control: Bump policy to 4.3.0.
+  * control: Add myself to uploaders, drop Ondřej.
+
+  [ Mathieu Mirmont ]
+  * upstream/signing-key.asc: Update the keys
+  * Fix the enforcer and signer init scripts (Closes: #868368)
+  * Add support for po-debconf
+  * Fix the ods-enforcer.8 man page
+  * gitlab-ci.yml: Add a GitLab CI file
+  * opendnssec-common.post{inst,rm}: Add --debconf-ok to ucf
+  * ods-kasp.5.gz: Suppress the lintian warning
+  * ods-kaspcheck.1: Remove unused manpage
+  * ods-kasp2html.1: Add a simple man page
+  * Strip the build directory from the doxygen docs
+  * ods-kasp2html.in: Remove bashism
+  * opendnssec-common.postrm: Prevent multiple deluser
+  * opendnssec-common.examples: There are no examples
+  * signconf.xml.patch: Remove obsolete file
+  * opendnssec-common.config: Migration warning only if migrating
+  * rules: Use dh_missing for --fail-missing
+  * Shellcheck fixes
+  * control: opendnssec-doc is Multi-Arch: foreign
+  * Fix service crash after installation (Closes: #859419)
+  * control: New maintainer: yours truly
+
+ -- Mathieu Mirmont <mat@parad0x.org>  Wed, 06 Feb 2019 10:47:42 +0100
+
+opendnssec (1:2.1.3-0.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * control: Update the maintainer address. (Closes: #899628)
+
+ -- Timo Aaltonen <tjaalton@debian.org>  Tue, 08 Jan 2019 12:20:42 +0200
+
+opendnssec (1:2.1.3-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * rules: Drop handling old dbg packages from dh_installdocs override.
+    (Closes: #876277)
+
+ -- Timo Aaltonen <tjaalton@debian.org>  Thu, 21 Sep 2017 15:00:10 +0300
+
+opendnssec (1:2.1.3-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * New upstream release. (Closes: #869091, #870072) (LP: #1703836)
+    - refresh patches
+  * enforcer-*.install: ods-ksmutil was removed, drop from here too.
+  * source/local-options: Ignore files not on the tarball.
+
+ -- Timo Aaltonen <tjaalton@debian.org>  Tue, 19 Sep 2017 16:08:35 +0300
+
+opendnssec (1:2.0.4-3) unstable; urgency=medium
+
+  * Fix reading the tmpfiles (Thanks Michael Biebl for catching that)
+    (Closes: #852059)
+  * Add /var/lib/opendnssec/{signer,enforcer} to the list of managed
+    directories (Closes: #859418)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 08 May 2017 14:47:39 +0200
+
+opendnssec (1:2.0.4-2) unstable; urgency=high
+
+  * Also add empty postinst and postrm maintainer scripts to
+    opendnssec-enforcer-mysql package to allow upgrades from jessie
+    (Closes: #848111)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 01 Feb 2017 10:25:24 +0100
+
+opendnssec (1:2.0.4-1) unstable; urgency=medium
+
+  * Drop (<< 5.7) from libmysqlclient-dev B-D to allow builds on Ubuntu
+  * New upstream version 2.0.4
+  * Remove OpenSSL 1.1 patch as support was merged upstream
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 18 Jan 2017 11:12:18 +0100
+
+opendnssec (1:2.0.3+-1) unstable; urgency=medium
+
+  * Imported Upstream version 2.0.3 (again from upstream tarball,
+    the previous tarball seems to be botched somehow for unknown
+    reason)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 09 Jan 2017 09:10:03 +0100
+
+opendnssec (1:2.0.3-6) unstable; urgency=medium
+
+  * Define and use SQLITE3_SONAME macro from d/rules instead of hardcoded
+    libsqlite3.so (Closes: #843590, #849803)
+  * Cleanup old parts of README.Debian for 2.x release
+  * Install schema.sqlite and schema.mysql to /usr/share/opendnssec
+  * Fix schema.sqlite and schema.mysql paths to /usr/share/opendnssec
+    (Closes: #843589)
+  * Add pkg-config to Build-Depends (needed to resolve libsqlite3.so
+    SONAME)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 02 Jan 2017 16:29:55 +0100
+
+opendnssec (1:2.0.3-5) unstable; urgency=medium
+
+  * Remove hard dependency on libldns1 (Closes: #849451)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 28 Dec 2016 13:39:55 +0100
+
+opendnssec (1:2.0.3-4) unstable; urgency=medium
+
+  * Remove libcurl4-openssl-dev from Build-Depends
+  * Add libssl-dev to Build-Depends
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 15 Dec 2016 10:53:50 +0100
+
+opendnssec (1:2.0.3-3) unstable; urgency=medium
+
+  * Introduce empty preinst script to circumvent error with faulty preinst
+    script in jessie (Closes: #848111)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 14 Dec 2016 12:02:09 +0100
+
+opendnssec (1:2.0.3-2) unstable; urgency=medium
+
+  * Fix default-*mysql* {Build-,}Depends (Closes: #845883)
+
+ -- Ondřej Surý <ondrej@debian.org>  Sat, 03 Dec 2016 12:48:06 +0100
+
+opendnssec (1:2.0.3-1) unstable; urgency=medium
+
+  * Fix OpenSSL 1.1.0 Support (Closes: #828467)
+  * Imported Upstream version 2.0.3
+  * Add default-jdk to Build-Depends as "java is required for converting
+    RelaxNG Compact to RelaxNG"
+
+ -- Ondřej Surý <ondrej@debian.org>  Sun, 06 Nov 2016 22:34:27 +0100
+
+opendnssec (1:2.0.1-1) experimental; urgency=medium
+
+  * Imported Upstream version 2.0.1
+  * Update packaging for OpenDNSSEC 2.0.0
+  * Rebase patches on top of OpenDNSSEC 2.0.1
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 26 Jul 2016 10:07:56 +0200
+
+opendnssec (1:1.4.10-1) unstable; urgency=medium
+
+  * Use TLS variant of Vcs-* (Closes: #816179)
+  * Add signature verification to d/watch
+  * Imported Upstream version 1.4.10
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 03 May 2016 19:35:30 +0200
+
+opendnssec (1:1.4.9-2) unstable; urgency=medium
+
+  [ Timo Aaltonen + Ondřej Surý ]
+  * Add systemd service files and default config (original work by )
+    (Closes: #817142)
+  [ Ondřej Surý ]
+  * The default file is useless, use overrides (systemctl edit <foo>) to
+    make changes to service files
+  * Remove obsolete maintscripts
+  * Convert sysvrc scripts to /lib/init/init-d-script snippets
+  * Fix the invalid XML in the default conf.xml
+  * Change the Vcs-* to pkg-dns
+  * Bump the standards to 3.9.7 (no change)
+  * The migrate_1_4_8.sqlite3 is now present (Closes #802669)
+  * Add silent support for parsing /etc/default/opendnssec for FreeIPA
+    support
+  * Add patches to enforcerd to fail gracefully when no HSM repositories
+    are available and change -d to no-daemon and -D to debug
+  * Migrate to dbgsym debug packages
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 18 Apr 2016 15:57:21 +0200
+
+opendnssec (1:1.4.9-1) unstable; urgency=medium
+
+  * Install migrate_1_4_8 SQL scripts into opendnsec-common package
+  * Imported Upstream version 1.4.9
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 24 Feb 2016 14:48:40 +0100
+
+opendnssec (1:1.4.8.2-1) unstable; urgency=medium
+
+  * Imported Upstream version 1.4.8.2
+  * Refresh patches for 1.4.8.2 release
+  * Move OpenDNSSEC under Pkg DNS umbrella
+  * Install the convert_database.pl and sql schema scripts to
+    opendnssec-common (Closes: #764435)
+  * The fix of failing signing a local zone on ARM was fixed in the new
+    upstream version (Closes: #798518)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 21 Oct 2015 14:01:37 +0200
+
+opendnssec (1:1.4.7-1) unstable; urgency=medium
+
+  * New upstream version 1.4.7
+   - SUPPORT-147: Zone updating via zone transfer can get stuck (Håvard
+     Eidnes)
+   - Crash on 'retransfer' command when not using DNS adapters.
+  * Recommend softhsm2 instead of softhsm
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 25 Aug 2015 14:41:11 +0200
+
+opendnssec (1:1.4.6-5) unstable; urgency=medium
+
+  * Fix old directory in maintscript helper invocation for
+    opendnssec-enforcer-{mysql,sqlite3} (Closes: #768245)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 01 Dec 2014 17:56:04 +0100
+
+opendnssec (1:1.4.6-4) unstable; urgency=medium
+
+  * Strip trailing slashes and use ${misc:Pre-Depends} (Closes: #768245)
+  * Drop extra -- "$@" from *.mainscript
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 06 Nov 2014 10:29:27 +0100
+
+opendnssec (1:1.4.6-3) unstable; urgency=medium
+
+  * Add Pre-Depends: dpkg (>= 1.17.5) for dpkg-maintscript-helper
+    (Closes: #768065)
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 04 Nov 2014 17:38:09 +0100
+
+opendnssec (1:1.4.6-2) unstable; urgency=high
+
+  * Make opendnssec binNMUable by unlinking the documentation
+    (Closes: #760830)
+  * Fix Vcs-URLs to point to anonscm.debian.org
+  * Fix invalid return usage in opendnssec-common preinst script
+    (Closes: #760852)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 08 Sep 2014 16:27:22 +0200
+
+opendnssec (1:1.4.6-1) unstable; urgency=medium
+
+  * New upstream version 1.4.6
+  * Refresh patches for 1.4.6 release
+  * Install new ods-getconf binary into opendnssec-signer package
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 22 Jul 2014 03:19:15 +0200
+
+opendnssec (1:1.4.5-6) unstable; urgency=high
+
+  * Set explicit path to libsofthsm.so to avoid M-A dirs creeping in
+    (Closes: #753612)
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 04 Jul 2014 11:23:11 +0200
+
+opendnssec (1:1.4.5-5) unstable; urgency=medium
+
+  * Switch to debhelper 9 dpkg-buildflags from hardening-wrapper
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 30 Jun 2014 10:24:44 +0200
+
+opendnssec (1:1.4.5-4) unstable; urgency=medium
+
+  * Swap mariadb-client with mysql-client in Build-Depends
+    (Closes: #751912)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 18 Jun 2014 09:57:50 +0200
+
+opendnssec (1:1.4.5-3) unstable; urgency=medium
+
+  * Don't install full set of man pages in opendnssec-enforcer-mysql
+    (Closes: #751711, #751712)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 16 Jun 2014 11:27:10 +0200
+
+opendnssec (1:1.4.5-2) unstable; urgency=medium
+
+  * Remove circular dependency between opendnssec-enforcer and its
+    backends (Closes: #744838)
+  * Add MariaDB as alternative to MySQL (Closes: #732901)
+  * d/control: Cleanup of conflicts and dependencies
+  * Install all doxygen documentation inside opendnssec-doc directory
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 13 Jun 2014 14:09:43 +0200
+
+opendnssec (1:1.4.5-1) unstable; urgency=medium
+
+  * New upstream version 1.4.5
+  * Update patches for 1.4.5 release
+  * README is now README.md
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 27 May 2014 15:37:12 +0200
+
+opendnssec (1:1.4.3-3) unstable; urgency=medium
+
+  * Add epoch to conflicts/breaks with opendnssec-auditor (Closes: #717980)
+  * opendnssec-auditor has been removed (Closes: #734344, #735587)
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 28 Jan 2014 13:17:29 +0100
+
+opendnssec (1:1.4.3-2) unstable; urgency=low
+
+  * Promote 1.4 branch to Debian unstable
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 28 Jan 2014 12:25:17 +0100
+
+opendnssec (1:1.4.3-1) experimental; urgency=low
+
+  * New upstream version 1.4.3
+  * Override dh_install with --fail-install
+  * Update patches for the 1.4.3 release
+  * Add Replaces&Breaks opendnssec-auditor (<< 1.4.0~) to
+    opendnssec-enforcer-* (Closes: #717980)
+  * Include mysql and sqlite3 migration scripts (Closes: #671185)
+  * Add hard conflict between opendnssec-dbg-mysql and
+    opendnssec-dbg-sqlite3
+  * Fix upstream manpage-section-mismatch
+    usr/share/man/man8/ods-signer(d).8.gz:1 8 != 22
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 17 Dec 2013 17:13:03 +0100
+
+opendnssec (1:1.4.1-1) experimental; urgency=low
+
+  * New upstream version 1.4.1
+  * Refresh patches for 1.4.1 release
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 17 Jul 2013 09:10:53 +0200
+
+opendnssec (1:1.4.0-1) experimental; urgency=low
+
+  * Imported Upstream version 1.4.0
+  * debian/rules, debian/control:
+   + Use dh-autoreconf instead of manual autoreconf invocation
+  * debian/patches/:
+   + Refresh patches for 1.4.0 release
+  * Fix couple of lintian warnings
+  * Make generated Doxyfile executable to fix FTBFS
+  * Just add doxygen and graphviz to fix FTBFS in Ubuntu PPA
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 25 Apr 2013 09:46:06 +0200
+
+opendnssec (1:1.3.14-2) unstable; urgency=low
+
+  * Use dh-autoreconf
+  * Bump build time dependency on libldns to 1.6.14 where strlcpy has
+    disappeared to fix some strange linking problems
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 17 Jul 2013 08:37:21 +0200
+
+opendnssec (1:1.3.14-1) unstable; urgency=low
+
+  * New upstream version 1.3.14
+  * Update patches for 1.3.14 release
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 26 Jun 2013 08:50:26 +0200
+
+opendnssec (1:1.3.10-2) unstable; urgency=low
+
+  * Imported Upstream version 1.3.13
+  * Remove upstream patches which were fixed in more recent upstream versions
+  * Fix type 's/signed/signer/ stop' (Closes: #681677)
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 25 Apr 2013 09:29:06 +0200
+
+opendnssec (1:1.3.9-5) unstable; urgency=low
+
+  * Add procps to build dependencies, so ods-ksmutil can HUP enforcer
+    (Closes: #701703)
+  * Create arch:all new opendnssec-doc package and move the doxygen
+    documentation there
+  * Split dh_auto_build to arch and indep, so doxygen documentation is
+    built only once
+  * Run dh_installdoc on opendnssec-doc too, so it gets it's own copyright
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 01 Mar 2013 14:52:33 +0100
+
+opendnssec (1:1.3.9-4) unstable; urgency=low
+
+  * Move the information about dropping the foreign key to README.Debian
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 15 Jan 2013 10:30:10 +0100
+
+opendnssec (1:1.3.9-3) unstable; urgency=low
+
+  * Pull couple of critical upstream fixes:
+    + OPENDNSSEC-303: for ods-ksmutil update zonelist will delete all
+      zones if unable to open/parse zonelist.xml
+    + OPENDNSSEC-282: RRSIGs are left in the signed zone when
+      authoritative RRsets become glue.
+    + OPENDNSSEC-338: ods-ksmutil zone delete --all does not work
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 27 Nov 2012 14:26:11 +0100
+
+opendnssec (1:1.3.9-2) unstable; urgency=low
+
+  * Replace documentation directory with symlink. (Courtesy of Salvatore
+    Bonaccorso) (Closes: #687885)
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 18 Sep 2012 09:27:26 +0200
+
+opendnssec (1:1.3.9-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.9
+  * Delete use_system_trang.patch as we don't rebuild rng files anymore
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 28 Jun 2012 11:24:55 +0200
+
+opendnssec (1:1.3.8-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.8
+  * Update patches for a new release
+  * Bump an epoch (1.4.0 is not going to be stable before wheezy
+    is frozen, so we are reverting back to 1.3.x branch)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 16 May 2012 09:51:06 +0200
+
+opendnssec (1.4.0~a1+r6339-1) experimental; urgency=low
+
+  * Imported Upstream version 1.4.0~a1+r6339
+  * Move 1.4.0 branch to Debian experimental
+  * Update source code to latest svn as many bugs were fixed there
+  * Update gbp.conf for debian-experimental
+  * Update patches to match r6339
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 17 May 2012 12:07:37 +0200
+
+opendnssec (1.4.0~a1-2) unstable; urgency=low
+
+  * Remove zonefetch.xml and add addns.xml configfile (Closes: #668703)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 16 Apr 2012 15:25:18 +0200
+
+opendnssec (1.4.0~a1-1) unstable; urgency=low
+
+  * Add NEWS about removal of OpenDNSSEC Auditor
+  * Add Conflicts/Replaces: opendnssec-auditor to opendnssec-common to
+    ensure clear removal of opendnssec-auditor from the system
+  * Update debian/{control,rules} to 1.4.0~a1 release
+  * Update patches for 1.4.0~a1 release
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 06 Apr 2012 12:19:27 +0200
+
+opendnssec (1.3.7-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.7
+  * Add warning about HSM SCA 6000 returning invalid key material with
+    leading zeroes
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 13 Mar 2012 15:24:26 +0100
+
+opendnssec (1.3.6-2) unstable; urgency=low
+
+  * Run enforcer under opendnssec:opendnssec (Closes: #662601)
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 06 Mar 2012 15:37:21 +0100
+
+opendnssec (1.3.6-1) unstable; urgency=low
+
+  * Depends on dpkg (>= 1.15.7.2~) or dpkg-maintscript-helper (which I
+    will maintain in my repositories for Ubuntu Lucid) (Closes: #659788)
+  * Imported Upstream version 1.3.6
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 17 Feb 2012 16:40:13 +0100
+
+opendnssec (1.3.5-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.5 (Closes: #657639)
+  * Bump required ldns version to 1.6.12
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 23 Jan 2012 12:54:20 +0100
+
+opendnssec (1.3.4-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.4
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 09 Dec 2011 15:11:16 +0100
+
+opendnssec (1.3.3-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.3
+  * Fix copy&paste unicode dashes in dpkg-maintscript-helper invocations
+    (Closes: #643660)
+  * Disable PIE hardening to make debug symbols work
+  * Build -dbg packages with symbols for better debugging
+  * Update dnsruby depend to 1.53
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 21 Nov 2011 19:37:41 +0100
+
+opendnssec (1.3.2-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.2
+  * Refresh patches for new release
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 13 Sep 2011 14:28:33 +0200
+
+opendnssec (1.3.0-2) unstable; urgency=low
+
+  * Depend on ruby-dnsruby and not ruby-dnssec (Closes: #639595)
+
+ -- Ondřej Surý <ondrej@debian.org>  Sun, 28 Aug 2011 15:34:24 +0200
+
+opendnssec (1.3.0-1) unstable; urgency=low
+
+  * Imported Upstream version 1.3.0
+  * Update dependency from libdns-ruby to ruby-dnsruby
+  * opensc-pkcs11.so is now located in /usr/lib/pkcs11/ in package
+    opensc (Closes: #632448)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 13 Jul 2011 08:41:10 +0200
+
+opendnssec (1.3.0~rc3-1) experimental; urgency=low
+
+  * Imported Upstream version 1.3.0~rc3
+  * Fix spurious warning in AC_LANG_PROGRAM (caused by libtool)
+  * Update libdns-ruby -> ruby-dnsruby dependency
+  * Update Vcs-* links
+  * Remove $Id tags using sed magic in debian/rules
+  * Trang was removed from upstream tarball; update the patch
+  * Update patches to the new release
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 14 Jun 2011 12:32:07 +0200
+
+opendnssec (1.3.0~rc2.dfsg-1) experimental; urgency=low
+
+  * Imported Upstream version 1.3.0~rc2.dfsg
+  * Remove $Id tags from conf files for smoother upgrades
+  * Remove duplicated conffiles from opendnssec-enforcer-mysql
+  * Remove extra jquery.js from doxygen generated documentation
+  * Bump standards version to 3.9.2
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 18 May 2011 13:13:35 +0200
+
+opendnssec (1.2.1.dfsg-1) unstable; urgency=low
+
+  * Imported Upstream version 1.2.1
+  * Fix typos in package descriptions (Courtesy of Thijs Kinkhorst)
+    (Closes: #603929)
+  * Install README.Debian only to opendnssec-enforcer (Closes: #603933)
+  * Conflicts with old packages no longer in archive
+  * Install migration scripts for sqlite3 and mysql and add NEWS file
+    about migration to opendnssec-enforcer (Closes: #612605)
+  * Remove trang from build-depends because we are not using it
+  * Use source:Version in any packages to enforce correct interpackage
+    dependencies
+  * Build doxygen html documentation and install it into respective
+    packages
+  * Add general README.Debian to all packages
+
+ -- Ondřej Surý <ondrej@debian.org>  Sat, 19 Mar 2011 17:22:59 +0100
+
+opendnssec (1.2.0-1) unstable; urgency=low
+
+  * New upstream version
+  * Packaging changes:
+    + Updated patches to new upstream version.
+    + Remove python dependencies (upstream change)
+    + Update interpackage dependencies to 1.2.0 release
+    + Remove obsolete opendnssec-signer-tools, libhsm0 and libhsm-dev
+      packages.
+    + Adjust mysql build for upstream changes
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 25 Jan 2011 11:00:25 +0100
+
+opendnssec (1.1.3-3) unstable; urgency=high
+
+  * Don't rebuild *.rng files, take them from upstream
+    + This should fix FTBFS on kfreebsd-amd64.
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 08 Dec 2010 10:31:16 +0100
+
+opendnssec (1.1.3-2) unstable; urgency=high
+
+  * Reorder unsetting permission and deleting the user account
+    (Closes: #604042)
+  * Fix insecure PYTHONPATH (Closes: #605161)
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 30 Nov 2010 12:15:58 +0100
+
+opendnssec (1.1.3-1) unstable; urgency=high
+
+  * New upstream version
+  * Fix for grave (causes data loss) upstream bug #183:
+    + Partial zone could get signed if zone transfer failed when using
+      zone_fetcher (http://trac.opendnssec.org/ticket/183)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 13 Sep 2010 14:43:16 +0200
+
+opendnssec (1.1.2-2) unstable; urgency=low
+
+  * Return an error if unknown argument is fed to ods-control
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 06 Sep 2010 11:05:33 +0200
+
+opendnssec (1.1.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Remove manpage patches, merged upstream
+  * Tighten build and runtime dependencies due upstream changes
+   + ldns (>= 1.6.6~)
+   + libdns-rub (>= 1.49~)
+  * Improve init.d script to kill enforcer by name and not just pidfile
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 25 Aug 2010 14:17:42 +0200
+
+opendnssec (1.1.1-2) unstable; urgency=low
+
+  * Don't build libhsm twice for sqlite3/mysql
+  * Apply directory fixes in common directory as well
+  * Remove all pregenerated config.h before building
+    + This fixes bad paths in binaries
+  * Install common scripts (ods-control) and man pages
+  * Fix signerd init.d script by adding missing d in pidfile (Closes: #592791)
+  * Add some useful linker flags to not link unneccessary libraries
+  * Fix ods-timing.5 manpage
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 10 Aug 2010 15:25:40 +0200
+
+opendnssec (1.1.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Merge debian packaging into one big tarball per upstream request
+  * Bump Standards version to 3.9.1
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 04 Aug 2010 11:30:23 +0200
+
+opendnssec-auditor (1.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 28 May 2010 12:17:53 +0200
+
+opendnssec-auditor (1.0.0-2) unstable; urgency=low
+
+  * Removed debian/patches, merged upstream
+  * Add some Recommends and Suggests
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 13 Apr 2010 12:02:36 +0200
+
+opendnssec-auditor (1.0.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 24 Mar 2010 19:45:34 +0100
+
+opendnssec-auditor (1.0.0~rc3.dfsg.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #566980)
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 25 Jan 2010 23:16:31 +0100
+
+opendnssec-conf (1.1.0.dfsg-2) unstable; urgency=low
+
+  * Refreshed patches to 1.1.0.dfsg
+  * Update dependencies to install libhsm-bin
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 07 Jun 2010 20:04:07 +0200
+
+opendnssec-conf (1.1.0.dfsg-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 28 May 2010 12:26:53 +0200
+
+opendnssec-conf (1.0.0.dfsg-2) unstable; urgency=low
+
+  * Rebuild RNG files only when recent jing-trang is installed.
+  * Set homedir of opendnssec user to /var/lib/opendnssec
+  * Move softhsm from Recommends to Suggests
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 13 Apr 2010 11:36:02 +0200
+
+opendnssec-conf (1.0.0.dfsg-1) unstable; urgency=low
+
+  * Remove trang/ directory altogether
+  * Enable regression testing
+  * Comment out example zone in signconf.xml after regression testing
+  * Recreate RNG files on build using system trang
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 08 Apr 2010 14:21:14 +0200
+
+opendnssec-conf (1.0.0-2) unstable; urgency=low
+
+  * Rename opendnssec-conf to opendnssec-common
+  * Add opendnssec meta-package
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 07 Apr 2010 13:46:11 +0200
+
+opendnssec-conf (1.0.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #567008)
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 26 Jan 2010 15:58:43 +0100
+
+opendnssec-enforcer (1.1.0-2) unstable; urgency=low
+
+  * Fix dependencies on OpenDNSSEC 1.1.0
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 17 Jun 2010 22:02:55 +0200
+
+opendnssec-enforcer (1.1.0-1) unstable; urgency=low
+
+  * New upstream release 1.1.0
+  * debian/patches/* updated to 1.1.0
+    + Updated patches to 1.1.0
+    + Update patch to create localstatedir from configure
+  * debian/rules
+    + Adapt to a new database backend option
+    + Removed piddir after build
+  * Remove libksm traces from debian/ directory
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 07 Jun 2010 19:48:30 +0200
+
+opendnssec-enforcer (1.0.0-7) unstable; urgency=low
+
+  * Fix missing $ in init script. (Closes: #580264)
+  * Cleanup dependency hell by creating virtual opendnssec-enforcer-
+    backend package. (Closes: #578877)
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 06 May 2010 12:20:53 +0200
+
+opendnssec-enforcer (1.0.0-6) unstable; urgency=low
+
+  * loosen dependency on libtool 2.2
+  * Fix typo in init.d script. (Closes: #578521)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 21 Apr 2010 11:57:17 +0200
+
+opendnssec-enforcer (1.0.0-5) unstable; urgency=low
+
+  * Add debian/watch file
+  * Remove common/config.h to allow inclusion of build dependant one
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 14 Apr 2010 08:44:51 +0200
+
+opendnssec-enforcer (1.0.0-4) unstable; urgency=low
+
+  * Add init script for opendnssec-enforcer
+  * Remove boilerplate template from README.source
+  * Add some Recommends and Suggests
+  * Add comment about permissions needed to use softhsm to README.Debian
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 13 Apr 2010 11:44:16 +0200
+
+opendnssec-enforcer (1.0.0-3) unstable; urgency=low
+
+  * Add sqlite3 and mysql-client dependencies to
+    opendnssec-enforcer-{sqlite3,mysql} packages
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 08 Apr 2010 19:39:50 +0200
+
+opendnssec-enforcer (1.0.0-2) unstable; urgency=low
+
+  * Build depend on mysql-client and sqlite3 packages, binaries are
+    needed for check at build time
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 26 Mar 2010 19:23:22 +0100
+
+opendnssec-enforcer (1.0.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #575316)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 24 Mar 2010 22:18:57 +0100
+
+opendnssec-signer (1.1.0-2) unstable; urgency=low
+
+  * Fix dependencies on OpenDNSSEC 1.1.0.
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 17 Jun 2010 22:03:34 +0200
+
+opendnssec-signer (1.1.0-1) unstable; urgency=low
+
+  * New upstream release
+    + Tools are now in /usr/lib/opendnssec/opendnssec/
+    + Signer creates pidfile automatically
+  * Debian packaging:
+    + Use pristine-tar
+    + Adapted patches to 1.1.0
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 07 Jun 2010 18:38:40 +0200
+
+opendnssec-signer (1.0.0-4) unstable; urgency=low
+
+  * Fix missing $ in init script. (Closes: #580264)
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 06 May 2010 12:21:15 +0200
+
+opendnssec-signer (1.0.0-3) unstable; urgency=low
+
+  * Loosen dependency on libtool 2.2
+  * Fix typo in init.d script. (Closes: #578521)
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 21 Apr 2010 11:58:37 +0200
+
+opendnssec-signer (1.0.0-2) unstable; urgency=low
+
+  * Change .install files to include files relative to build dir
+  * Remove unneeded override_dh_install
+
+ -- Ondřej Surý <ondrej@debian.org>  Sun, 28 Mar 2010 20:48:24 +0200
+
+opendnssec-signer (1.0.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #575349)
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 25 Mar 2010 02:34:38 +0100
+
+libhsm (1.1.0-3) unstable; urgency=low
+
+  * Correct dependencies to OpenDNSSEC 1.1
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 17 Jun 2010 11:29:12 +0200
+
+libhsm (1.1.0-2) unstable; urgency=low
+
+  * Recommend libhsm-bin when installing shared library
+
+ -- Ondřej Surý <ondrej@debian.org>  Mon, 07 Jun 2010 19:47:54 +0200
+
+libhsm (1.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed 001_export_only_hsm_symbols.patch, merged upstream.
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 28 May 2010 15:18:09 +0200
+
+libhsm (1.0.0-4) unstable; urgency=low
+
+  * Fix version number in unstable.
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 22 Apr 2010 09:29:26 +0200
+
+libhsm (1.0.0-3) unstable; urgency=low
+
+  * Install manpages as well; make install files relative to curdir
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 13 Apr 2010 12:39:03 +0200
+
+libhsm (1.0.0-2) unstable; urgency=low
+
+  * Depend on opendnssec-common since it depends on conf.xml
+  * Install manpages for ods-hsmspeed and ods-hsmutil
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 08 Apr 2010 19:35:28 +0200
+
+libhsm (1.0.0-1) unstable; urgency=low
+
+  * New upstream release (final 1.0.0)
+  * fix for: W: libhsm source: debhelper-but-no-misc-depends libhsm-dev
+  * Enable hardening wrapper
+  * Patch src/Makefile.am to export only symbols starting with hsm_
+  * Add libhsm0 symbols file
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 24 Mar 2010 19:33:04 +0100
+
+libhsm (1.0.0~rc3-1) unstable; urgency=low
+
+  * Initial release (Closes: #568102)
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 28 Jan 2010 11:13:21 +0100
