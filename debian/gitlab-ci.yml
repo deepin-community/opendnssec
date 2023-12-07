@@ -1,0 +1,55 @@
+##
+## Use as much as we can from the Salsa CI team jobs.
+##
+include:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+
+variables:
+  SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 1
+  SALSA_CI_DISABLE_BUILD_PACKAGE_ALL: 1
+
+##
+## Check for forgotten debconf-updatepo.
+##
+updatepo:
+  stage: test
+  image: ${SALSA_CI_IMAGES_BASE}
+  except:
+    - tags
+  script:
+    - apt-get update
+    - apt-get install -y po-debconf git
+    - debconf-updatepo
+    - git diff debian/po/templates.pot
+    - test -z "$(git ls-files -m debian/po/templates.pot)"
+
+##
+## Lint the distributed XML files.
+##
+xmllint:
+  stage: test
+  image: ${SALSA_CI_IMAGES_BASE}
+  except:
+    - tags
+  script:
+    - apt-get update
+    - apt-get install -y libxml2-utils
+    - apt-get install -y ${WORKING_DIR}/opendnssec-common_*.deb
+    - dpkg -L opendnssec-common | grep '\.xml$' | xargs xmllint --noout
+
+##
+## Run shellcheck on the packaging scripts.
+##
+shellcheck:
+  stage: test
+  image: ${SALSA_CI_IMAGES_BASE}
+  except:
+    - tags
+  script:
+    - apt-get update
+    - apt-get install -y git file shellcheck
+    - git ls-files debian
+          | xargs file
+          | awk '-F:' '/shell script/ {print $1}'
+          | xargs shellcheck --exclude SC1091,SC2034,SC2039,SC3043

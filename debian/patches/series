@@ -1,0 +1,10 @@
+0001-fix-localstate-dir.patch
+0003-rename-regress-for-autotest.patch
+0004-ods-control.in-fixes.patch
+0007-Use-SQLITE3_SONAME-macro-to-dlopen-libsqlite3.so.patch
+0008-Fix-var-opendnssec-var-lib-opendnssec-paths.patch
+0009-Fix-schema.sqlite-and-schema.mysql-paths-to-usr-shar.patch
+0013-Fix-build-warnings-and-possible-bugs.patch
+0015-remove-strptime-build-warning.patch
+0016-m4-acx_libxml2.m4-use-pkg-config-instead-of-xml2-con.patch
+0017-mysql8_my_bool.patch
